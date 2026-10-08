@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘의 차림 - 감성 라이프스타일 푸드 커머스</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; scroll-behavior: smooth; }
+        .font-market-hand { font-family: 'Nanum Pen Script', cursive, sans-serif; letter-spacing: -0.5px; }
+        .tag-popup { opacity: 0; visibility: hidden; transition: all 0.25s ease-in-out; transform: translateY(10px); }
+        .interactive-img-box:hover .tag-popup, .interactive-img-box:active .tag-popup { opacity: 1; visibility: visible; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-[#FAF8F5] text-[#4A3B32] antialiased">
+
+    <!-- Top Utility Bar -->
+    <div class="bg-white border-b border-[#E6E0D8] text-xs py-1.5 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-[#8C7A6B]">✨ 첫 가입하고 오늘의 차림 멤버십 혜택과 다양한 웰컴 쿠폰을 받아보세요!</div>
+            <div class="flex items-center space-x-4 text-[#6B5344] font-medium">
+                <a href="#" class="hover:text-[#5C4033]">회원가입</a>
+                <span class="text-[#D6CCC2]">|</span>
+                <a href="#" class="hover:text-[#5C4033]">로그인</a>
+                <span class="text-[#D6CCC2]">|</span>
+                <a href="#" class="hover:text-[#5C4033]">고객센터 ▾</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2.5 cursor-pointer" onclick="showPage('home')">
+                <img src="./images/title1.png" alt="오늘의 차림 로고" class="w-8 h-8 rounded-xl object-cover shadow-sm">
+                <h1 class="text-2xl font-extrabold text-[#5C4033] tracking-tighter">오늘의 차림</h1>
+            </div>
+
+            <div class="flex-1 max-w-xl mx-12 hidden md:block">
+                <div class="relative">
+                    <input type="text" placeholder="원하시는 밀키트나 신선 식재료를 검색해보세요" class="w-full bg-[#FAF8F5] border border-[#E6E0D8] rounded-xl py-2.5 pl-4 pr-12 text-sm text-[#4A3B32] placeholder-[#8C7A6B] focus:outline-none focus:ring-1 focus:ring-[#5C4033]">
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-5 text-xl">
+                <a href="#" class="hover:opacity-70 text-sm text-[#6B5344] hidden sm:inline">📍배송지등록</a>
+                <a href="#" class="hover:opacity-70 text-[#6B5344]" title="찜하기">🤍</a>
+                <a href="#" class="hover:opacity-70 text-[#6B5344] relative" title="장바구니">
+                    🛒
+                    <span class="absolute -top-1.5 -right-2 bg-[#5C4033] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="border-t border-[#E6E0D8] bg-white">
+            <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-12 text-sm font-semibold text-[#6B5344]">
+                <div class="flex space-x-10 items-center overflow-x-auto">
+                    <button onclick="showPage('home')" class="text-[#5C4033] font-bold transition">추천</button>
+                    <button onclick="showPage('home')" class="hover:text-[#5C4033] transition">숏츠</button>
+                    <button onclick="showPage('home')" class="hover:text-[#5C4033] transition">레시피</button>
+                    <button onclick="showPage('community')" class="hover:text-[#5C4033] transition">커뮤니티</button>
+                    <button onclick="showPage('shopping')" class="hover:text-[#5C4033] transition">쇼핑</button>
+                    <button onclick="showPage('exhibition')" class="text-[#D97706] hover:text-[#B45309] font-bold transition flex items-center gap-1">✨ 오늘의 기획전</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTAINER VIEWS -->
+    <main class="max-w-7xl mx-auto px-6 py-8">
+
+        <!-- [VIEW 1] 홈 화면 (메인) -->
+        <div id="view-home" class="space-y-14">
+            <section>
+                <div class="relative rounded-3xl overflow-hidden shadow-md min-h-[340px] md:min-h-[400px] flex items-end">
+                   <img src="./images/title.png" alt="파스타 배너" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="relative z-10 w-full p-8 md:p-14 flex justify-end items-end">
+                        <div>
+                            <button onclick="showPage('shopping')" class="bg-[#F3EFEA]/90 hover:bg-[#F3EFEA] text-[#4A3B32] px-6 py-3 rounded-full font-bold text-xs md:text-sm transition shadow-lg flex items-center space-x-2 border border-[#E6E0D8]">
+                                <span>쇼핑관 바로가기</span><span>&gt;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 원형 카테고리 -->
+            <section>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+                    <div onclick="showPage('shopping')" class="group bg-white border border-[#E6E0D8] rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:border-[#5C4033] hover:shadow-md transition cursor-pointer">
+                        <div class="w-16 h-16 bg-[#F3EFEA] rounded-full flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition">⏱️</div>
+                        <span class="text-sm font-bold text-[#4A3B32]">10분 요리</span>
+                    </div>
+                    <div onclick="showPage('shopping')" class="group bg-white border border-[#E6E0D8] rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:border-[#5C4033] hover:shadow-md transition cursor-pointer">
+                        <div class="w-16 h-16 bg-[#F3EFEA] rounded-full flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition">🏠</div>
+                        <span class="text-sm font-bold text-[#4A3B32]">집들이 음식</span>
+                    </div>
+                    <div onclick="showPage('shopping')" class="group bg-white border border-[#E6E0D8] rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:border-[#5C4033] hover:shadow-md transition cursor-pointer">
+                        <div class="w-16 h-16 bg-[#F3EFEA] rounded-full flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition">🥗</div>
+                        <span class="text-sm font-bold text-[#4A3B32]">다이어트</span>
+                    </div>
+                    <div onclick="showPage('shopping')" class="group bg-white border border-[#E6E0D8] rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:border-[#5C4033] hover:shadow-md transition cursor-pointer">
+                        <div class="w-16 h-16 bg-[#F3EFEA] rounded-full flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition">👶</div>
+                        <span class="text-sm font-bold text-[#4A3B32]">아이와 함께</span>
+                    </div>
+                    <div onclick="showPage('shopping')" class="group bg-white border border-[#E6E0D8] rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:border-[#5C4033] hover:shadow-md transition cursor-pointer">
+                        <div class="w-16 h-16 bg-[#F3EFEA] rounded-full flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition">👤</div>
+                        <span class="text-sm font-bold text-[#4A3B32]">혼밥</span>
+                    </div>
+                    <div onclick="showPage('shopping')" class="group bg-white border border-[#E6E0D8] rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:border-[#5C4033] hover:shadow-md transition cursor-pointer">
+                        <div class="w-16 h-16 bg-[#F3EFEA] rounded-full flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition">🎉</div>
+                        <span class="text-sm font-bold text-[#4A3B32]">홈파티</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 오늘의 숏츠 -->
+            <section>
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-[#4A3B32]">오늘의 숏츠</h3>
+                    <a href="#" class="text-xs text-[#8C7A6B] hover:text-[#5C4033] font-semibold">더보기 &gt;</a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+                    <div class="bg-white border border-[#E6E0D8] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group relative h-64 cursor-pointer" onclick="showPage('shopping')">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-0 inset-x-0 p-4 text-white">
+                            <h4 class="text-sm font-bold mb-1 leading-snug">퇴근하고 15분<br>한끼 완식!</h4>
+                            <p class="text-xs text-white/80 flex items-center gap-1">▶ 12.4만</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-[#E6E0D8] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group relative h-64 cursor-pointer" onclick="showPage('shopping')">
+                        <img src="./images/food4.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-0 inset-x-0 p-4 text-white">
+                            <h4 class="text-sm font-bold mb-1 leading-snug">집들이 음식<br>추천 5가지</h4>
+                            <p class="text-xs text-white/80 flex items-center gap-1">▶ 23.1만</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-[#E6E0D8] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group relative h-64 cursor-pointer" onclick="showPage('shopping')">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-0 inset-x-0 p-4 text-white">
+                            <h4 class="text-sm font-bold mb-1 leading-snug">칼로리 훅 낮춘<br>키토 샐러드</h4>
+                            <p class="text-xs text-white/80 flex items-center gap-1">▶ 8.5만</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-[#E6E0D8] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group relative h-64 cursor-pointer" onclick="showPage('shopping')">
+                        <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-0 inset-x-0 p-4 text-white">
+                            <h4 class="text-sm font-bold mb-1 leading-snug">아이와 함께<br>만드는 만두키트</h4>
+                            <p class="text-xs text-white/80 flex items-center gap-1">▶ 8.6만</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-[#E6E0D8] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group relative h-64 cursor-pointer" onclick="showPage('shopping')">
+                        <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-0 inset-x-0 p-4 text-white">
+                            <h4 class="text-sm font-bold mb-1 leading-snug">주말 홈파티<br>메인 스테이크</h4>
+                            <p class="text-xs text-white/80 flex items-center gap-1">▶ 15.9만</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2주 식단 구독 배너 -->
+            <section>
+                <div onclick="showPage('subscription')" class="bg-[#F3EFEA] border border-[#E6E0D8] rounded-3xl p-10 flex flex-col md:flex-row justify-between items-center relative overflow-hidden shadow-sm cursor-pointer group">
+                    <div class="max-w-xl mb-6 md:mb-0 z-10 flex flex-col items-start">
+                        <h3 class="text-3xl md:text-5xl font-extrabold text-[#4A3B32] mb-2 font-market-hand">2주 식단, 오늘의 차림이 추천해요!</h3>
+                        <p class="text-sm md:text-base text-[#6B5344] mb-6">고민 없이, 맛있게, 건강하게</p>
+                        <span class="bg-[#5C4033] text-white hover:bg-[#4A3B32] px-6 py-3.5 rounded-xl font-bold text-sm transition shadow-lg inline-block">구독 메뉴 보러가기 &gt;</span>
+                    </div>
+                    <div class="w-56 h-40 md:w-72 md:h-48 rounded-2xl overflow-hidden shadow-md border border-[#E6E0D8] z-10 group-hover:scale-105 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- [VIEW 2] 오늘의 기획전 페이지 -->
+        <div id="view-exhibition" class="hidden space-y-12 max-w-5xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <h2 class="text-4xl font-extrabold text-[#4A3B32] font-market-hand">오늘의 차림 주요 서비스 바로가기</h2>
+                <p class="text-sm text-[#8C7A6B]">오늘 뭐 먹지 고민하는 순간부터, 나만의 한 끼를 완성하는 순간까지 프리미엄 큐레이션을 만나보세요.</p>
+            </div>
+
+            <!-- 4대 주요 서비스 풀와이드 배너 -->
+            <div class="space-y-6">
+                <div onclick="showPage('subscription')" class="group relative rounded-3xl overflow-hidden shadow-md h-72 cursor-pointer border border-[#E6E0D8] flex items-center justify-center text-center">
+                    <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="relative z-10 p-8 text-white max-w-xl mx-auto space-y-3">
+                        <h3 class="text-3xl md:text-4xl font-extrabold font-market-hand tracking-wide">2주 식단 구독</h3>
+                        <p class="text-sm md:text-base text-white/90">당신의 식생활을 오늘의 차림이 큐레이션해요.</p>
+                        <span class="inline-block mt-2 bg-white/25 backdrop-blur-md px-6 py-2.5 rounded-xl text-xs font-bold group-hover:bg-white group-hover:text-[#4A3B32] transition">구독 식단 보러가기 &gt;</span>
+                    </div>
+                </div>
+
+                <div onclick="showPage('custom-diy')" class="group relative rounded-3xl overflow-hidden shadow-md h-72 cursor-pointer border border-[#E6E0D8] flex items-center justify-center text-center">
+                    <img src="./images/food31.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="relative z-10 p-8 text-white max-w-xl mx-auto space-y-3">
+                        <h3 class="text-3xl md:text-4xl font-extrabold font-market-hand tracking-wide">나만의 밀키트</h3>
+                        <p class="text-sm md:text-base text-white/90">원하는 재료와 소스로 나만의 메뉴를 만들어보세요.</p>
+                        <span class="inline-block mt-2 bg-white/25 backdrop-blur-md px-6 py-2.5 rounded-xl text-xs font-bold group-hover:bg-white group-hover:text-[#4A3B32] transition">DIY 조합하기 &gt;</span>
+                    </div>
+                </div>
+
+                <div onclick="showPage('season-exhibition')" class="group relative rounded-3xl overflow-hidden shadow-md h-72 cursor-pointer border border-[#E6E0D8] flex items-center justify-center text-center">
+                    <img src="./images/food32.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="relative z-10 p-8 text-white max-w-xl mx-auto space-y-3">
+                        <h3 class="text-3xl md:text-4xl font-extrabold font-market-hand tracking-wide">시즌 키트</h3>
+                        <p class="text-sm md:text-base text-white/90">명절, 계절, 기념일의 식탁을 차리는 경험을 선사해요.</p>
+                        <span class="inline-block mt-2 bg-white/25 backdrop-blur-md px-6 py-2.5 rounded-xl text-xs font-bold group-hover:bg-white group-hover:text-[#4A3B32] transition">시즌 한정 만나보기 &gt;</span>
+                    </div>
+                </div>
+
+                <div onclick="showPage('chef-exhibition')" class="group relative rounded-3xl overflow-hidden shadow-md h-72 cursor-pointer border border-[#E6E0D8] flex items-center justify-center text-center">
+                    <img src="./images/food33.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="relative z-10 p-8 text-white max-w-xl mx-auto space-y-3">
+                        <h3 class="text-3xl md:text-4xl font-extrabold font-market-hand tracking-wide">맛집·셰프 콜라보</h3>
+                        <p class="text-sm md:text-base text-white/90">줄 서지 않아도, 유명한 그 맛을 집에서 즐겨보세요.</p>
+                        <span class="inline-block mt-2 bg-white/25 backdrop-blur-md px-6 py-2.5 rounded-xl text-xs font-bold group-hover:bg-white group-hover:text-[#4A3B32] transition">셰프 라인업 보기 &gt;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- [NEW VIEW A] 시즌 키트 전용 상세 페이지 -->
+        <div id="view-season-exhibition" class="hidden space-y-10 max-w-5xl mx-auto">
+            <button onclick="showPage('exhibition')" class="text-xs font-bold text-[#8C7A6B] hover:text-[#5C4033]">&lt; 기획전으로 돌아가기</button>
+            
+            <div class="text-center space-y-3 py-8 bg-gradient-to-r from-[#FEF3C7] to-[#F3EFEA] border border-[#E6E0D8] rounded-3xl shadow-sm px-4">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-[#4A3B32] font-market-hand tracking-wide">계절과 명절을 담은 특별한 식탁, 시즌 키트</h2>
+                <p class="text-sm text-[#8C7A6B]">소중한 사람들과 함께 나누는 계절 한정 프리미엄 밀키트를 만나보세요.</p>
+            </div>
+
+            <div class="flex justify-center gap-3">
+                <button onclick="filterSeason('all')" id="btn-season-all" class="bg-[#5C4033] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-sm">전체 시즌 키트</button>
+                <button onclick="filterSeason('autumn')" id="btn-season-autumn" class="bg-white border border-[#E6E0D8] text-[#6B5344] px-5 py-2.5 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5]">🍁 가을 보양식</button>
+                <button onclick="filterSeason('party')" id="btn-season-party" class="bg-white border border-[#E6E0D8] text-[#6B5344] px-5 py-2.5 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5]">🎉 연말 홈파티</button>
+                <button onclick="filterSeason('holiday')" id="btn-season-holiday" class="bg-white border border-[#E6E0D8] text-[#6B5344] px-5 py-2.5 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5]">🏮 명절 한상차림</button>
+            </div>
+
+            <div id="season-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+        </div>
+
+
+        <!-- [NEW VIEW B] 맛집·셰프 콜라보 전용 상세 페이지 -->
+        <div id="view-chef-exhibition" class="hidden space-y-10 max-w-5xl mx-auto">
+            <button onclick="showPage('exhibition')" class="text-xs font-bold text-[#8C7A6B] hover:text-[#5C4033]">&lt; 기획전으로 돌아가기</button>
+            
+            <div class="text-center space-y-3 py-8 bg-gradient-to-r from-[#4A3B32] to-[#5C4033] text-white rounded-3xl shadow-md px-4">
+                <h2 class="text-3xl md:text-5xl font-extrabold font-market-hand tracking-wide">줄 서서 먹는 맛집, 이제 집에서 즐기세요</h2>
+                <p class="text-sm text-white/80">대한민국 최고 셰프들과 유명 맛집의 시그니처 레시피를 완벽 재현합니다.</p>
+            </div>
+
+            <div class="flex justify-center gap-3 overflow-x-auto pb-2">
+                <button onclick="filterChef('all')" id="btn-chef-all" class="bg-[#5C4033] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-sm whitespace-nowrap">전체 셰프/맛집</button>
+                <button onclick="filterChef('choi')" id="btn-chef-choi" class="bg-white border border-[#E6E0D8] text-[#6B5344] px-5 py-2.5 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5] whitespace-nowrap">👨‍🍳 최강록 셰프 콜라보</button>
+                <button onclick="filterChef('shinseung')" id="btn-chef-shinseung" class="bg-white border border-[#E6E0D8] text-[#6B5344] px-5 py-2.5 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5] whitespace-nowrap">🥟 미슐랭 선정 맛집</button>
+                <button onclick="filterChef('meatmaster')" id="btn-chef-meatmaster" class="bg-white border border-[#E6E0D8] text-[#6B5344] px-5 py-2.5 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5] whitespace-nowrap">🥩 숙성육 전문 스테이커리</button>
+            </div>
+
+            <div id="chef-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+        </div>
+
+
+        <!-- [VIEW C] 나만의 밀키트 커스텀 페이지 -->
+        <div id="view-custom-diy" class="hidden space-y-10 max-w-4xl mx-auto">
+            <button onclick="showPage('exhibition')" class="text-xs font-bold text-[#8C7A6B] hover:text-[#5C4033]">&lt; 기획전으로 돌아가기</button>
+            
+            <div class="text-center space-y-2 py-6 bg-white border border-[#E6E0D8] rounded-3xl shadow-sm">
+                <span class="text-xs font-extrabold text-[#D97706] bg-[#FEF3C7] px-3.5 py-1.5 rounded-full tracking-widest">CUSTOM MEAL KIT</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-[#4A3B32] font-market-hand tracking-wide">MAKE YOUR MEAL KIT</h2>
+                <p class="text-sm text-[#8C7A6B]">나만의 밀키트를 직접 조합하고 세상에 단 하나뿐인 레시피를 완성해보세요.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-8 bg-white border border-[#E6E0D8] rounded-3xl p-8 shadow-sm">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-extrabold text-[#5C4033] tracking-wider">STEP 01. 메인 메뉴 선택</h3>
+                            <span class="text-xs text-[#8C7A6B]">필수 (1개)</span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <button onclick="selectCustomOption('main', '닭갈비', 5900, 320)" class="custom-btn-main p-3.5 rounded-2xl border border-[#5C4033] bg-[#5C4033] text-white text-xs font-bold transition text-center shadow-sm">닭갈비</button>
+                            <button onclick="selectCustomOption('main', '불고기', 6500, 380)" class="custom-btn-main p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">불고기</button>
+                            <button onclick="selectCustomOption('main', '파스타', 5500, 420)" class="custom-btn-main p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">파스타</button>
+                            <button onclick="selectCustomOption('main', '우삼겹', 6900, 450)" class="custom-btn-main p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">우삼겹</button>
+                            <button onclick="selectCustomOption('main', '순대국밥', 5200, 340)" class="custom-btn-main p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">순대국밥</button>
+                            <button onclick="selectCustomOption('main', '부대찌개', 6200, 400)" class="custom-btn-main p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">부대찌개</button>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-[#E6E0D8]"></div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-extrabold text-[#5C4033] tracking-wider">STEP 02. 탄수화물 선택</h3>
+                            <span class="text-xs text-[#8C7A6B]">필수 (1개)</span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <button onclick="selectCustomOption('carb', '현미밥', 1500, 200)" class="custom-btn-carb p-3.5 rounded-2xl border border-[#5C4033] bg-[#5C4033] text-white text-xs font-bold transition text-center shadow-sm">현미밥</button>
+                            <button onclick="selectCustomOption('carb', '백미밥', 1200, 250)" class="custom-btn-carb p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">백미밥</button>
+                            <button onclick="selectCustomOption('carb', '곤약밥', 2000, 110)" class="custom-btn-carb p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">곤약밥</button>
+                            <button onclick="selectCustomOption('carb', '귀리밥', 1800, 180)" class="custom-btn-carb p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">귀리밥</button>
+                            <button onclick="selectCustomOption('carb', '파스타면', 1600, 310)" class="custom-btn-carb p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">파스타면</button>
+                            <button onclick="selectCustomOption('carb', '라면사리', 1000, 350)" class="custom-btn-carb p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">라면사리</button>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-[#E6E0D8]"></div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-sm font-extrabold text-[#5C4033] tracking-wider">STEP 03. 채소 선택</h3>
+                            <span class="text-xs text-[#8C7A6B]">필수 (1개)</span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <button onclick="selectCustomOption('veg', '브로콜리', 1500, 50)" class="custom-btn-veg p-3.5 rounded-2xl border border-[#5C4033] bg-[#5C4033] text-white text-xs font-bold transition text-center shadow-sm">브로콜리</button>
+                            <button onclick="selectCustomOption('veg', '버섯', 1800, 40)" class="custom-btn-veg p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">버섯</button>
+                            <button onclick="selectCustomOption('veg', '양파', 1000, 45)" class="custom-btn-veg p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">양파</button>
+                            <button onclick="selectCustomOption('veg', '대파', 1200, 35)" class="custom-btn-veg p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">대파</button>
+                            <button onclick="selectCustomOption('veg', '숙주나물', 1400, 30)" class="custom-btn-veg p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">숙주나물</button>
+                            <button onclick="selectCustomOption('veg', '청경채', 1600, 25)" class="custom-btn-veg p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">청경채</button>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-[#E6E0D8]"></div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-sm font-extrabold text-[#5C4033] tracking-wider">STEP 04. 나만의 옵션</h3>
+                        <div class="bg-[#FAF8F5] p-4 rounded-2xl border border-[#E6E0D8] space-y-2">
+                            <div class="flex justify-between items-center text-xs font-bold text-[#4A3B32]">
+                                <span>맵기 조절</span>
+                                <span id="spicy-level-text" class="text-[#D97706]">보통 (중)</span>
+                            </div>
+                            <input type="range" min="1" max="3" value="2" oninput="changeSpicyLevel(this.value)" class="w-full accent-[#5C4033] cursor-pointer">
+                            <div class="flex justify-between text-[10px] text-[#8C7A6B]">
+                                <span>순한맛</span>
+                                <span>보통맛</span>
+                                <span>매운맛</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <span class="text-xs font-bold text-[#4A3B32] block">소스 타입</span>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="selectSauce('기본', 0)" class="custom-btn-sauce p-3 rounded-xl border border-[#5C4033] bg-[#5C4033] text-white text-xs font-bold transition text-center">기본</button>
+                                <button onclick="selectSauce('매콤', 500)" class="custom-btn-sauce p-3 rounded-xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">매콤 (+500)</button>
+                                <button onclick="selectSauce('저당', 1000)" class="custom-btn-sauce p-3 rounded-xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]">저당 (+1,000)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-1">
+                    <div class="bg-white border border-[#E6E0D8] rounded-3xl p-8 shadow-sm sticky top-24 space-y-6">
+                        <div class="border-b border-[#E6E0D8] pb-4">
+                            <span class="text-[10px] font-bold text-[#D97706] bg-[#FEF3C7] px-2.5 py-1 rounded-full">REALTIME PREVIEW</span>
+                            <h3 class="text-2xl font-extrabold text-[#4A3B32] mt-2 font-market-hand">MY MEAL KIT</h3>
+                        </div>
+
+                        <div class="space-y-2 text-xs font-bold text-[#4A3B32]">
+                            <div class="flex justify-between items-center py-1 border-b border-[#FAF8F5]">
+                                <span id="sum-main" class="text-[#5C4033] font-extrabold">• 닭갈비</span>
+                                <span id="sum-main-p" class="text-[#8C7A6B]">5,900원</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1 border-b border-[#FAF8F5]">
+                                <span id="sum-carb" class="text-[#5C4033] font-extrabold">+ 현미밥</span>
+                                <span id="sum-carb-p" class="text-[#8C7A6B]">1,500원</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1 border-b border-[#FAF8F5]">
+                                <span id="sum-veg" class="text-[#5C4033] font-extrabold">+ 브로콜리</span>
+                                <span id="sum-veg-p" class="text-[#8C7A6B]">1,500원</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1">
+                                <span id="sum-sauce" class="text-[#8C7A6B]">+ 기본 / 보통</span>
+                                <span id="sum-sauce-p" class="text-[#8C7A6B]">0원</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#FAF8F5] border border-[#E6E0D8] rounded-2xl p-5 text-center space-y-2">
+                            <div>
+                                <span class="text-[10px] text-[#8C7A6B] block">TOTAL CALORIE</span>
+                                <span id="sum-total-cal" class="text-base font-extrabold text-[#5C4033]">570 kcal</span>
+                            </div>
+                            <div class="border-t border-[#E6E0D8] pt-2">
+                                <span class="text-[10px] text-[#8C7A6B] block">TOTAL PRICE</span>
+                                <span id="sum-total-price" class="text-2xl font-extrabold text-[#5C4033]">8,900원</span>
+                            </div>
+                        </div>
+
+                        <button onclick="alert('나만의 밀키트가 성공적으로 조합되어 장바구니에 담겼습니다!')" class="w-full bg-[#5C4033] text-white py-4 rounded-xl font-bold text-sm hover:bg-[#4A3B32] transition shadow-lg text-center">
+                            [ 밀키트 완성하기 ]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- [VIEW 3] 2주 식단 구독 페이지 -->
+        <div id="view-subscription" class="hidden space-y-12 max-w-3xl mx-auto">
+            <button onclick="showPage('home')" class="text-xs font-bold text-[#8C7A6B] hover:text-[#5C4033]">&lt; 메인으로 돌아가기</button>
+            
+            <div class="text-center space-y-3 py-6 bg-white border border-[#E6E0D8] rounded-3xl shadow-sm">
+                <span class="text-xs font-extrabold text-[#D97706] bg-[#FEF3C7] px-3.5 py-1.5 rounded-full tracking-widest">14 DAYS CURATION</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-[#4A3B32] font-market-hand tracking-wide">2주 동안, 고민 없이 먹는 법</h2>
+                <p class="text-sm text-[#8C7A6B]">나의 목표에 맞춰 큐레이션한 오늘의 맞춤 식단</p>
+            </div>
+
+            <div class="bg-white border border-[#E6E0D8] rounded-3xl p-8 md:p-12 shadow-sm space-y-8">
+                <div class="flex justify-between items-center border-b border-[#E6E0D8] pb-4">
+                    <span id="sub-date-label" class="text-xs font-bold text-[#8C7A6B] tracking-wider uppercase">TODAY · OCT 08</span>
+                    <span id="sub-day-badge" class="text-xs font-extrabold text-white bg-[#5C4033] px-3 py-1 rounded-xl">DAY 01</span>
+                </div>
+
+                <div class="text-center space-y-2">
+                    <h3 id="sub-menu-title" class="text-2xl md:text-3xl font-extrabold text-[#4A3B32]">가볍게 시작하는 하루</h3>
+                    <p id="sub-menu-desc" class="text-sm font-bold text-[#5C4033]">닭가슴살 현미볼 샐러드</p>
+                </div>
+
+                <div class="rounded-2xl overflow-hidden h-72 md:h-80 border border-[#E6E0D8] shadow-inner">
+                    <img id="sub-menu-img" src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover">
+                </div>
+
+                <div class="bg-[#FAF8F5] border border-[#E6E0D8] rounded-2xl p-4 flex justify-around text-center text-xs md:text-sm font-bold text-[#4A3B32]">
+                    <div><span class="block text-[#8C7A6B] text-[10px]">CALORIE</span><span id="sub-nutri-cal" class="text-[#5C4033]">520 kcal</span></div>
+                    <div class="border-r border-[#E6E0D8]"></div>
+                    <div><span class="block text-[#8C7A6B] text-[10px]">PROTEIN</span><span id="sub-nutri-p" class="text-[#5C4033]">P 35g</span></div>
+                    <div class="border-r border-[#E6E0D8]"></div>
+                    <div><span class="block text-[#8C7A6B] text-[10px]">CARB</span><span id="sub-nutri-c" class="text-[#5C4033]">C 58g</span></div>
+                    <div class="border-r border-[#E6E0D8]"></div>
+                    <div><span class="block text-[#8C7A6B] text-[10px]">FAT</span><span id="sub-nutri-f" class="text-[#5C4033]">F 14g</span></div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 pt-2">
+                    <button onclick="openSubDiyModal()" class="bg-white border border-[#5C4033] text-[#5C4033] py-3.5 rounded-xl font-bold text-sm hover:bg-[#FAF8F5] transition shadow-sm">재료 바꾸기</button>
+                    <button onclick="alert('성공적으로 오늘 식단이 장바구니에 담겼습니다!')" class="bg-[#5C4033] text-white py-3.5 rounded-xl font-bold text-sm hover:bg-[#4A3B32] transition shadow-md">오늘 담기</button>
+                </div>
+            </div>
+
+            <div class="bg-white border border-[#E6E0D8] rounded-3xl p-8 shadow-sm space-y-6">
+                <div class="text-center">
+                    <h4 class="text-base font-extrabold text-[#4A3B32] tracking-wider">14 DAY PLAN</h4>
+                    <p class="text-xs text-[#8C7A6B] mt-1">원하시는 일차를 선택하여 식단을 미리 확인하고 커스텀해보세요.</p>
+                </div>
+                <div id="calendar-grid" class="grid grid-cols-7 gap-3 pt-2"></div>
+            </div>
+        </div>
+
+        <!-- 구독 재료 바꾸기 모달 -->
+        <div id="sub-diy-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white border border-[#E6E0D8] rounded-3xl max-w-md w-full p-8 space-y-6 shadow-2xl relative">
+                <div class="flex justify-between items-center border-b border-[#E6E0D8] pb-4">
+                    <div>
+                        <span class="text-[10px] font-bold text-[#D97706] bg-[#FEF3C7] px-2 py-0.5 rounded">스마트 맞춤 커스텀</span>
+                        <h3 class="text-xl font-extrabold text-[#4A3B32] mt-1">🌿 집에 있는 재료 제외하기</h3>
+                    </div>
+                    <button onclick="closeSubDiyModal()" class="text-xs bg-[#FAF8F5] border border-[#E6E0D8] px-3 py-1.5 rounded-xl font-bold text-[#6B5344]">닫기 ✕</button>
+                </div>
+                <div id="sub-diy-list" class="space-y-3 bg-[#FAF8F5] p-5 rounded-2xl border border-[#E6E0D8] max-h-64 overflow-y-auto"></div>
+                <div class="border-t border-[#E6E0D8] pt-4 flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] text-[#8C7A6B] block">맞춤 커스텀 차감 합계</span>
+                        <span id="sub-modal-discount" class="text-xl font-extrabold text-[#5C4033]">-0원</span>
+                    </div>
+                    <button onclick="applySubDiy()" class="bg-[#5C4033] text-white px-6 py-3 rounded-xl font-bold text-xs hover:bg-[#4A3B32] transition shadow-md">적용하기</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- [VIEW 4] 쇼핑관 -->
+        <div id="view-shopping" class="hidden space-y-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <button onclick="showPage('home')" class="text-xs font-bold text-[#8C7A6B] hover:text-[#5C4033] mb-2 block">&lt; 메인으로 돌아가기</button>
+                    <h2 class="text-3xl font-extrabold text-[#4A3B32]">🛒 오늘의 차림 쇼핑관</h2>
+                    <p class="text-xs text-[#8C7A6B] mt-1">완제품 밀키트부터 신선채소, 고기&토핑, 소스까지 필요한 모든 식품을 장바구니에 담아보세요.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterCategory('milkit')" id="btn-milkit" class="bg-[#5C4033] text-white px-4 py-2 rounded-xl text-xs font-bold transition">밀키트 완제품</button>
+                    <button onclick="filterCategory('vegetable')" id="btn-vegetable" class="bg-white border border-[#E6E0D8] text-[#6B5344] px-4 py-2 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5]">신선채소</button>
+                    <button onclick="filterCategory('meat')" id="btn-meat" class="bg-white border border-[#E6E0D8] text-[#6B5344] px-4 py-2 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5]">고기 & 토핑</button>
+                    <button onclick="filterCategory('sauce')" id="btn-sauce" class="bg-white border border-[#E6E0D8] text-[#6B5344] px-4 py-2 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5]">소스</button>
+                </div>
+            </div>
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"></div>
+        </div>
+
+
+        <!-- [VIEW 5] 상품 상세 페이지 -->
+        <div id="view-detail" class="hidden space-y-8">
+            <button onclick="showPage('shopping')" class="text-xs font-bold text-[#8C7A6B] hover:text-[#5C4033]">&lt; 쇼핑관으로 돌아가기</button>
+            <div class="bg-white border border-[#E6E0D8] rounded-3xl p-8 grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="h-96 rounded-2xl overflow-hidden border border-[#E6E0D8]"><img id="detail-img" src="" class="w-full h-full object-cover"></div>
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <span id="detail-badge" class="bg-[#F3EFEA] text-[#5C4033] text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">맞춤 DIY 주문</span>
+                        <h2 id="detail-title" class="text-3xl font-extrabold text-[#4A3B32] mb-2">상품명</h2>
+                        <p id="detail-price-text" class="text-xl font-bold text-[#5C4033] mb-4">가격</p>
+                        <div id="diy-container" class="border border-[#E6E0D8] p-5 rounded-2xl bg-[#FAF8F5] mb-6 h-64 overflow-y-auto space-y-2">
+                            <h5 class="text-xs font-bold text-[#5C4033] sticky top-0 bg-[#FAF8F5] pb-2 border-b border-[#E6E0D8]">🌿 집에 있는 재료 선택 (실시간 가격 차감)</h5>
+                        </div>
+                    </div>
+                    <div class="border-t border-[#E6E0D8] pt-6 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-[#8C7A6B] block">최종 커스텀 결제금액</span>
+                            <span id="total-price" class="text-2xl font-extrabold text-[#5C4033]">0원</span>
+                        </div>
+                        <button onclick="alert('성공적으로 장바구니에 담겼습니다!')" class="bg-[#5C4033] text-white px-8 py-4 rounded-xl font-bold text-sm hover:bg-[#4A3B32] transition shadow-lg">장바구니 담기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- [VIEW 6] 커뮤니티 페이지 -->
+        <div id="view-community" class="hidden space-y-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-[#4A3B32]">💬 오늘의 차림 커뮤니티</h2>
+                    <p class="text-xs text-[#8C7A6B] mt-1">유저들이 실제로 사용한 태그들을 사진을 통해 확인하고 바로 장바구니에 담아보세요.</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="switchCommunityTab('review')" id="comm-tab-review" class="bg-[#5C4033] text-white px-4 py-2 rounded-xl text-xs font-bold transition">밀키트 생생 후기 (10개)</button>
+                    <button onclick="switchCommunityTab('table')" id="comm-tab-table" class="bg-white border border-[#E6E0D8] text-[#6B5344] px-4 py-2 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5]">나만의 식탁 자랑 (10개)</button>
+                </div>
+            </div>
+            <div id="community-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </div>
+
+    </main>
+
+    <!-- JavaScript 로직 및 전체 데이터베이스 -->
+    <script>
+        function showPage(pageId) {
+            ['view-home', 'view-exhibition', 'view-subscription', 'view-shopping', 'view-detail', 'view-community', 'view-custom-diy', 'view-season-exhibition', 'view-chef-exhibition'].forEach(id => {
+                const el = document.getElementById(id);
+                if(el) el.classList.add('hidden');
+            });
+
+            const targetView = document.getElementById('view-' + pageId);
+            if(targetView) targetView.classList.remove('hidden');
+
+            if(pageId === 'shopping') {
+                filterCategory('milkit');
+            } else if(pageId === 'community') {
+                switchCommunityTab('review');
+            } else if(pageId === 'subscription') {
+                renderCalendar(1);
+            } else if(pageId === 'season-exhibition') {
+                filterSeason('all');
+            } else if(pageId === 'chef-exhibition') {
+                filterChef('all');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 시즌 키트 데이터베이스
+        const seasonProducts = [
+            { id: 101, season: 'autumn', name: '가을 특선 능이버섯 한우 불고기 뚝배기', price: 24900, img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80', desc: '향긋한 자연산 능이버섯과 1++ 한우의 만남' },
+            { id: 102, season: 'autumn', name: '제철 대하 버터구이 & 트러플 리조또', price: 27900, img: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80', desc: '살이 꽉 찬 가을 대하와 깊은 트러플 풍미' },
+            { id: 103, season: 'party', name: '연말 홈파티 토마호크 스테이크 플래터', price: 38900, img: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80', desc: '화려한 연말 식탁을 완성하는 시그니처 토마호크' },
+            { id: 104, season: 'party', name: '스노우 치즈 쉬림프 로제 파스타', price: 18900, img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80', desc: '눈꽃 치즈가 내려앉은 꾸덕한 파티용 로제' },
+            { id: 105, season: 'holiday', name: '전통 수제 모둠전 & 사골 만두전골 세트', price: 32900, img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80', desc: '명절 온 가족이 함께 즐기는 정성 가득 한상' },
+            { id: 106, season: 'holiday', name: '프리미엄 LA 갈비구이 세트', price: 29900, img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80', desc: '특제 과일 소스로 72시간 숙성한 부드러운 갈비' }
+        ];
+
+        function filterSeason(category) {
+            ['all', 'autumn', 'party', 'holiday'].forEach(cat => {
+                const btn = document.getElementById('btn-season-' + cat);
+                if(btn) {
+                    if(cat === category) {
+                        btn.className = 'bg-[#5C4033] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-sm';
+                    } else {
+                        btn.className = 'bg-white border border-[#E6E0D8] text-[#6B5344] px-5 py-2.5 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5]';
+                    }
+                }
+            });
+
+            const grid = document.getElementById('season-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+
+            const filtered = category === 'all' ? seasonProducts : seasonProducts.filter(p => p.season === category);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'bg-white border border-[#E6E0D8] rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer group';
+                card.onclick = () => showDetail(p.name, p.price, p.img, [{name: '소스/시즈닝이 있어요', price: 1000}]);
+                card.innerHTML = `
+                    <div class="h-52 overflow-hidden relative"><img src="${p.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
+                    <div class="p-6 space-y-2">
+                        <h4 class="text-base font-extrabold text-[#4A3B32]">${p.name}</h4>
+                        <p class="text-xs text-[#8C7A6B] leading-relaxed">${p.desc}</p>
+                        <p class="text-lg font-extrabold text-[#5C4033] pt-2">${p.price.toLocaleString()}원</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // 맛집·셰프 콜라보 데이터베이스
+        const chefProducts = [
+            { id: 201, chef: 'choi', name: '최강록 셰프의 특제 조림장 메로 지리나베', price: 26900, img: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80', desc: '일식 대가 최강록의 감칠맛 폭발 특제 지리' },
+            { id: 202, chef: 'choi', name: '최강록 셰프의 버터간장 오징어 소바', price: 16900, img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80', desc: '풍미 가득한 버터와 특제 간장소스의 완벽 조화' },
+            { id: 203, chef: 'shinseung', name: '미슐랭 빕구르망 선정 육즙 만두전골', price: 19900, img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80', desc: '속이 꽉 찬 수제 만두와 진한 사골 육수의 정석' },
+            { id: 204, chef: 'shinseung', name: '서울 웨이팅 1위 멘보샤 & 어향동고', price: 21900, img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80', desc: '바삭한 식빵 속 통통한 새우살이 가득한 명물 요리' },
+            { id: 205, chef: 'meatmaster', name: '드라이에이징 티본 스테이크 500g', price: 42900, img: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80', desc: '30일 숙성하여 풍부한 육즙과 부드러움을 자랑하는 스테이크' },
+            { id: 206, chef: 'meatmaster', name: '웻에이징 양갈비 프렌치렉 & 민트젤리', price: 36900, img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80', desc: '잡내 없이 고소한 프리미엄 프렌치렉 양구이' }
+        ];
+
+        function filterChef(category) {
+            ['all', 'choi', 'shinseung', 'meatmaster'].forEach(cat => {
+                const btn = document.getElementById('btn-chef-' + cat);
+                if(btn) {
+                    if(cat === category) {
+                        btn.className = 'bg-[#5C4033] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-sm whitespace-nowrap';
+                    } else {
+                        btn.className = 'bg-white border border-[#E6E0D8] text-[#6B5344] px-5 py-2.5 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5] whitespace-nowrap';
+                    }
+                }
+            });
+
+            const grid = document.getElementById('chef-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+
+            const filtered = category === 'all' ? chefProducts : chefProducts.filter(p => p.chef === category);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'bg-white border border-[#E6E0D8] rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer group';
+                card.onclick = () => showDetail(p.name, p.price, p.img, [{name: '소스/시즈닝이 있어요', price: 1000}]);
+                card.innerHTML = `
+                    <div class="h-52 overflow-hidden relative"><img src="${p.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>
+                    <div class="p-6 space-y-2">
+                        <h4 class="text-base font-extrabold text-[#4A3B32]">${p.name}</h4>
+                        <p class="text-xs text-[#8C7A6B] leading-relaxed">${p.desc}</p>
+                        <p class="text-lg font-extrabold text-[#5C4033] pt-2">${p.price.toLocaleString()}원</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        const subscriptionPlans = [
+            { 
+                day: 1, date: 'OCT 08', title: '가볍게 시작하는 하루', menu: '닭가슴살 현미볼 샐러드', cal: '520 kcal', p: 'P 35g', c: 'C 58g', f: 'F 14g', 
+                img: 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1000&q=80',
+                diyOptions: [
+                    { name: '집에 방울토마토가 있어요', price: 1500 },
+                    { name: '집에 삶은 계란이 있어요', price: 700 },
+                    { name: '오리엔탈 드레싱이 있어요', price: 1200 },
+                    { name: '견과류 토핑이 있어요', price: 1000 },
+                    { name: '믹스 샐러드 채소가 있어요', price: 1800 }
+                ]
+            },
+            { 
+                day: 2, date: 'OCT 09', title: '단백질 충전의 날', menu: '수비드 소고기 스테이크 プレート', cal: '640 kcal', p: 'P 48g', c: 'C 32g', f: 'F 22g', 
+                img: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80',
+                diyOptions: [
+                    { name: '통후추와 소금이 있어요', price: 500 },
+                    { name: '무염 버터가 있어요', price: 1000 },
+                    { name: '새송이버섯이 있어요', price: 1500 },
+                    { name: '아스파라거스가 있어요', price: 2000 },
+                    { name: '시판 스테이크 소스가 있어요', price: 1500 }
+                ]
+            },
+            { 
+                day: 3, date: 'OCT 10', title: '클린한 수요일', menu: '아보카도 키토 연어 샐러드', cal: '480 kcal', p: 'P 28g', c: 'C 22g', f: 'F 30g', 
+                img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80',
+                diyOptions: [
+                    { name: '레몬즙이 있어요', price: 800 },
+                    { name: '케이퍼와 소스가 있어요', price: 1200 },
+                    { name: '방울토마토가 있어요', price: 1500 },
+                    { name: '양상추가 있어요', price: 1600 },
+                    { name: '올리브오일이 있어요', price: 2000 }
+                ]
+            },
+            { 
+                day: 4, date: 'OCT 11', title: '든든하고 얼큰하게', menu: '매콤 우삼겹 두부 찌개', cal: '580 kcal', p: 'P 40g', c: 'C 45g', f: 'F 24g', 
+                img: './images/food1.png',
+                diyOptions: [
+                    { name: '손질 대파가 있어요', price: 800 },
+                    { name: '찌개용 두부가 있어요', price: 1200 },
+                    { name: '청양고추가 있어요', price: 600 },
+                    { name: '다진 마늘이 있어요', price: 500 },
+                    { name: '양파가 있어요', price: 700 }
+                ]
+            },
+            { 
+                day: 5, date: 'OCT 12', title: '지중해식 푸른 식탁', menu: '쉬림프 바질 파스타', cal: '610 kcal', p: 'P 32g', c: 'C 70g', f: 'F 18g', 
+                img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=80',
+                diyOptions: [
+                    { name: '파스타 면이 있어요', price: 1500 },
+                    { name: '다진 마늘이 있어요', price: 500 },
+                    { name: '방울토마토가 있어요', price: 1500 },
+                    { name: '파마산 치즈가 있어요', price: 1200 },
+                    { name: '올리브오일이 있어요', price: 2000 }
+                ]
+            },
+            { 
+                day: 6, date: 'OCT 13', title: '주말 홈파티 힐링', menu: '트러플 오일 채끝 짜파게티 & 계란', cal: '720 kcal', p: 'P 26g', c: 'C 85g', f: 'F 32g', 
+                img: './images/food2.png',
+                diyOptions: [
+                    { name: '짜장 라면이 있어요', price: 1200 },
+                    { name: '계란이 있어요', price: 700 },
+                    { name: '대파가 있어요', price: 800 },
+                    { name: '고춧가루가 있어요', price: 500 },
+                    { name: '트러플 오일이 있어요', price: 2500 }
+                ]
+            },
+            { 
+                day: 7, date: 'OCT 14', title: '속 편안한 일요일', menu: '진한 사골 찹쌀순대 국밥', cal: '550 kcal', p: 'P 38g', c: 'C 40g', f: 'F 20g', 
+                img: './images/food5.jpg',
+                diyOptions: [
+                    { name: '대파가 있어요', price: 800 },
+                    { name: '다진 마늘이 있어요', price: 500 },
+                    { name: '들깨가루가 있어요', price: 1000 },
+                    { name: '청양고추가 있어요', price: 600 },
+                    { name: '새우젓이 있어요', price: 800 }
+                ]
+            },
+            { 
+                day: 8, date: 'OCT 15', title: '활기찬 2주차 시작', menu: '단호박 오리구이 샐러드', cal: '530 kcal', p: 'P 34g', c: 'C 48g', f: 'F 19g', 
+                img: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80',
+                diyOptions: [
+                    { name: '단호박이 있어요', price: 2000 },
+                    { name: '어린잎 채소가 있어요', price: 1500 },
+                    { name: '발사믹 드레싱이 있어요', price: 1200 },
+                    { name: '방울토마토가 있어요', price: 1500 },
+                    { name: '견과류가 있어요', price: 1000 }
+                ]
+            },
+            { 
+                day: 9, date: 'OCT 16', title: '매콤달콤 에너지', menu: '우삼겹 떡볶이와 김말이', cal: '680 kcal', p: 'P 30g', c: 'C 92g', f: 'F 21g', 
+                img: './images/food1.png',
+                diyOptions: [
+                    { name: '쌀떡/밀떡이 있어요', price: 2000 },
+                    { name: '사각 어묵이 있어요', price: 1500 },
+                    { name: '대파가 있어요', price: 800 },
+                    { name: '양파가 있어요', price: 700 },
+                    { name: '모짜렐라 치즈가 있어요', price: 2000 }
+                ]
+            },
+            { 
+                day: 10, date: 'OCT 17', title: '오리엔탈 클린밀', menu: '우삼겹 숙주볶음 덮밥', cal: '590 kcal', p: 'P 42g', c: 'C 50g', f: 'F 23g', 
+                img: './images/food18.jpg',
+                diyOptions: [
+                    { name: '쌀밥이 있어요', price: 1000 },
+                    { name: '숙주나물이 있어요', price: 1200 },
+                    { name: '대파가 있어요', price: 800 },
+                    { name: '다진 마늘이 있어요', price: 500 },
+                    { name: '진간장이 있어요', price: 600 }
+                ]
+            },
+            { 
+                day: 11, date: 'OCT 18', title: '풍미 가득한 중식', menu: '사천식 마라탕과 미니꿔바로우', cal: '750 kcal', p: 'P 45g', c: 'C 68g', f: 'F 34g', 
+                img: './images/food8.jpg',
+                diyOptions: [
+                    { name: '청경채가 있어요', price: 1500 },
+                    { name: '숙주나물이 있어요', price: 1200 },
+                    { name: '중국당면이 있어요', price: 1800 },
+                    { name: '팽이버섯이 있어요', price: 1000 },
+                    { name: '소고기가 있어요', price: 3500 }
+                ]
+            },
+            { 
+                day: 12, date: 'OCT 19', title: '깊고 진한국물', menu: '묵은지 통삼겹 김치찜', cal: '690 kcal', p: 'P 52g', c: 'C 35g', f: 'F 38g', 
+                img: './images/food7.jpg',
+                diyOptions: [
+                    { name: '묵은지 김치가 있어요', price: 2500 },
+                    { name: '대파가 있어요', price: 800 },
+                    { name: '양파가 있어요', price: 700 },
+                    { name: '두부가 있어요', price: 1200 },
+                    { name: '다진 마늘이 있어요', price: 500 }
+                ]
+            },
+            { 
+                day: 13, date: 'OCT 20', title: '토요일 특선 메뉴', menu: '부대찌개와 라면사리', cal: '710 kcal', p: 'P 46g', c: 'C 75g', f: 'F 28g', 
+                img: './images/food6.jpg',
+                diyOptions: [
+                    { name: '라면사리가 있어요', price: 800 },
+                    { name: '대파가 있어요', price: 800 },
+                    { name: '두부가 있어요', price: 1200 },
+                    { name: '슬라이스 치즈가 있어요', price: 700 },
+                    { name: '양파가 있어요', price: 700 }
+                ]
+            },
+            { 
+                day: 14, date: 'OCT 21', title: '건강한 마무리', menu: '소고기 버섯 뚝배기 불고기', cal: '560 kcal', p: 'P 44g', c: 'C 42g', f: 'F 17g', 
+                img: './images/food9.jpg',
+                diyOptions: [
+                    { name: '당면이 있어요', price: 1000 },
+                    { name: '대파가 있어요', price: 800 },
+                    { name: '새송이버섯이 있어요', price: 1500 },
+                    { name: '양파가 있어요', price: 700 },
+                    { name: '다진 마늘이 있어요', price: 500 }
+                ]
+            }
+        ];
+
+        let currentSelectedDay = 1;
+
+        function renderCalendar(selectedDay = 1) {
+            const grid = document.getElementById('calendar-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            subscriptionPlans.forEach(plan => {
+                const isSelected = plan.day === selectedDay;
+                const btn = document.createElement('button');
+                btn.onclick = () => selectSubscriptionDay(plan.day);
+                btn.className = `p-3 rounded-2xl border text-center transition flex flex-col items-center justify-center ${
+                    isSelected ? 'bg-[#5C4033] border-[#5C4033] text-white shadow-md scale-105' : 'bg-[#FAF8F5] border-[#E6E0D8] text-[#4A3B32] hover:border-[#5C4033]'
+                }`;
+                btn.innerHTML = `<span class="text-[10px] font-bold opacity-80">DAY ${plan.day < 10 ? '0' + plan.day : plan.day}</span><span class="text-sm font-extrabold mt-1">${isSelected ? '●' : '○'}</span>`;
+                grid.appendChild(btn);
+            });
+        }
+
+        function selectSubscriptionDay(dayNum) {
+            currentSelectedDay = dayNum;
+            const plan = subscriptionPlans.find(p => p.day === dayNum);
+            if(!plan) return;
+            document.getElementById('sub-date-label').innerText = `TODAY · ${plan.date}`;
+            document.getElementById('sub-day-badge').innerText = `DAY ${plan.day < 10 ? '0' + plan.day : plan.day}`;
+            document.getElementById('sub-menu-title').innerText = plan.title;
+            document.getElementById('sub-menu-desc').innerText = plan.menu;
+            document.getElementById('sub-menu-img').src = plan.img;
+            document.getElementById('sub-nutri-cal').innerText = plan.cal;
+            document.getElementById('sub-nutri-p').innerText = plan.p;
+            document.getElementById('sub-nutri-c').innerText = plan.c;
+            document.getElementById('sub-nutri-f').innerText = plan.f;
+            renderCalendar(plan.day);
+        }
+
+        function openSubDiyModal() {
+            const plan = subscriptionPlans.find(p => p.day === currentSelectedDay);
+            const listContainer = document.getElementById('sub-diy-list');
+            listContainer.innerHTML = '';
+            plan.diyOptions.forEach((opt, index) => {
+                const label = document.createElement('label');
+                label.className = 'flex items-center justify-between text-xs text-[#4A3B32] cursor-pointer py-1.5 border-b border-[#E6E0D8]/60 last:border-none';
+                label.innerHTML = `
+                    <span class="flex items-center gap-2.5">
+                        <input type="checkbox" onchange="calculateSubDiyTotal()" data-price="${opt.price}" class="sub-diy-checkbox accent-[#5C4033] w-4 h-4 rounded">
+                        <span>${index + 1}. ${opt.name}</span>
+                    </span>
+                    <span class="text-[#8C7A6B] font-semibold">-${opt.price.toLocaleString()}원</span>
+                `;
+                listContainer.appendChild(label);
+            });
+            document.getElementById('sub-modal-discount').innerText = '-0원';
+            document.getElementById('sub-diy-modal').classList.remove('hidden');
+        }
+
+        function closeSubDiyModal() { document.getElementById('sub-diy-modal').classList.add('hidden'); }
+
+        function calculateSubDiyTotal() {
+            let totalDiscount = 0;
+            document.querySelectorAll('.sub-diy-checkbox').forEach(chk => {
+                if(chk.checked) totalDiscount += parseInt(chk.getAttribute('data-price'));
+            });
+            document.getElementById('sub-modal-discount').innerText = `-${totalDiscount.toLocaleString()}원`;
+        }
+
+        function applySubDiy() {
+            alert('선택하신 재료가 제외되어 실시간 시세에 맞게 구독 금액이 차감되었습니다!');
+            closeSubDiyModal();
+        }
+
+        const products = [
+            { id: 1, category: 'milkit', name: '매콤 우삼겹 떡볶이', price: 14900, img: './images/food1.png', desc: '15분 완성 / 2인분', diy: [{name: '쌀떡/밀떡이 있어요', price: 2000}, {name: '어묵이 있어요', price: 1500}, {name: '대파가 있어요', price: 800}] },
+            { id: 2, category: 'milkit', name: '신의주 찹쌀순대 국밥', price: 12900, img: './images/food5.jpg', desc: '진한 사골 육수 포함', diy: [{name: '대파가 있어요', price: 800}, {name: '다진 마늘이 있어요', price: 500}, {name: '들깨가루가 있어요', price: 1000}] },
+            { id: 3, category: 'milkit', name: '최강록 특제 우동세트', price: 11500, img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80', desc: '감칠맛 폭발 쯔유', diy: [{name: '대파가 있어요', price: 800}, {name: '계란이 있어요', price: 700}] },
+            { id: 4, category: 'milkit', name: '프리미엄 소고기 스테이크', price: 21900, img: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80', desc: '시즈닝 오일 포함', diy: [{name: '통후추가 있어요', price: 500}, {name: '버터가 있어요', price: 1200}] },
+            { id: 5, category: 'milkit', name: '키토 아보카도 샐러드', price: 9900, img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80', desc: '신선 채소 구성', diy: [{name: '방울토마토가 있어요', price: 1500}] },
+            { id: 6, category: 'milkit', name: '얼큰 진한 부대찌개', price: 13500, img: './images/food6.jpg', desc: '모듬햄 3종 추가', diy: [{name: '라면사리가 있어요', price: 800}, {name: '두부가 있어요', price: 1200}] },
+            { id: 7, category: 'milkit', name: '묵은지 김치찜 밀키트', price: 15900, img: './images/food7.jpg', desc: '국내산 묵은지와 통삼겹', diy: [{name: '대파가 있어요', price: 800}] },
+            { id: 8, category: 'milkit', name: '사천식 마라탕 밀키트', price: 14500, img: './images/food8.jpg', desc: '얼얼하고 매콤한 마라소스', diy: [{name: '청경채가 있어요', price: 1500}, {name: '숙주나물이 있어요', price: 1200}] },
+            { id: 9, category: 'milkit', name: '전통 소불고기 뚝배기', price: 16900, img: './images/food9.jpg', desc: '특제 과일 양념 숙성', diy: [{name: '당면이 있어요', price: 1000}] },
+            { id: 10, category: 'milkit', name: '우삼겹 순두부 찌개', price: 11900, img: './images/food10.jpg', desc: '얼큰하고 부드러운 순두부', diy: [{name: '계란이 있어요', price: 700}] },
+            { id: 11, category: 'vegetable', name: '손질 대파 (소포장)', price: 1800, img: './images/food11.jpg', desc: '바로 썰어 쓰기 좋은 신선 대파', diy: [] },
+            { id: 12, category: 'vegetable', name: '양파 슬라이스 1팩', price: 1500, img: './images/food12.png', desc: '단맛이 꽉 찬 국내산 양파', diy: [] },
+            { id: 13, category: 'vegetable', name: '깐 다진 마늘', price: 2200, img: './images/food13.jpg', desc: '알싸하고 신선한 다진 마늘', diy: [] },
+            { id: 14, category: 'vegetable', name: '청양고추 & 홍고추 팩', price: 1900, img: './images/food14.png', desc: '칼칼한 매운맛 고추', diy: [] },
+            { id: 15, category: 'vegetable', name: '신선 양배추 1/4조각', price: 2000, img: './images/food15.jpg', desc: '아삭하고 달콤한 양배추', diy: [] },
+            { id: 16, category: 'vegetable', name: '모둠 쌈채소 (깻잎/상추)', price: 2900, img: './images/food16.jpg', desc: '당일 수확한 신선 쌈채소', diy: [] },
+            { id: 17, category: 'vegetable', name: '새송이버섯 1팩', price: 2100, img: './images/food17.jpg', desc: '식감이 쫄깃한 새송이버섯', diy: [] },
+            { id: 18, category: 'vegetable', name: '신선 숙주나물 1봉', price: 1600, img: './images/food18.jpg', desc: '아삭아삭한 숙주', diy: [] },
+            { id: 19, category: 'meat', name: '우삼겹 추가 150g', price: 5900, img: './images/food19.jpeg', desc: '고소한 풍미의 얇은 우삼겹', diy: [] },
+            { id: 20, category: 'meat', name: '모짜렐라 치즈 200g', price: 3900, img: './images/food20.jpg', desc: '쭈욱 늘어나는 자연 치즈', diy: [] },
+            { id: 21, category: 'meat', name: '밀떡 및 쌀떡 사리 세트', price: 2500, img: './images/food21.jpg', desc: '쫄깃쫄깃 떡사리', diy: [] },
+            { id: 22, category: 'meat', name: '사각 어묵 1팩', price: 2000, img: './images/food22.jpg', desc: '도톰한 부산 어묵', diy: [] },
+            { id: 23, category: 'meat', name: '국산 유정란 10구', price: 4800, img: './images/food23.jpg', desc: '신선하고 고소한 계란', diy: [] },
+            { id: 24, category: 'meat', name: '찌개용 두부 1모', price: 1500, img: './images/food24.jpg', desc: '부드러운 국산 콩 두부', diy: [] },
+            { id: 25, category: 'meat', name: '라면사리 추가', price: 800, img: './images/food25.jpg', desc: '찌개 전용 사리', diy: [] },
+            { id: 26, category: 'meat', name: '중국당면 1팩', price: 2500, img: './images/food26.jpg', desc: '넓적당면', diy: [] },
+            { id: 27, category: 'sauce', name: '만능 떡볶이 비법 소스', price: 2500, img: './images/food27.jpg', desc: '매콤달콤 황금비율 양념장', diy: [] },
+            { id: 28, category: 'sauce', name: '정통 가쓰오 쯔유 (200ml)', price: 4500, img: './images/food28.jpg', desc: '우동 및 국물요리 비법간장', diy: [] },
+            { id: 29, category: 'sauce', name: '사천식 마라 소스팩', price: 3500, img: './images/food29.jpg', desc: '얼얼하고 매콤한 마라 페이스트', diy: [] },
+            { id: 30, category: 'sauce', name: '특제 스테이크 소스', price: 3000, img: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80', desc: '스테이크 전용 소스', diy: [] },
+            { id: 31, category: 'sauce', name: '고소한 참기름 (100ml)', price: 6500, img: './images/food30.jpg', desc: '저온 압착 국산 참기름', diy: [] }
+        ];
+
+        const communityPosts = [
+            { type: 'review', author: '요리왕초보', badge: '베스트후기', time: '1시간 전', text: '퇴근하고 15분 만에 후딱 만들었는데 비주얼도 맛도 정말 대박이네요! 남편도 사먹는 것보다 훨씬 맛있다고 칭찬해 줬어요. 재료 손질이 다 되어 있어서 너무 편하고 소스가 진짜 킥입니다. 앞으로 주말마다 시켜 먹을 것 같아요 강력 추천합니다!', img: './images/food34.png', tags: [{ name: '매콤 우삼겹 떡볶이', price: 14900 }, { name: '손질 대파 (소포장)', price: 1800 }, { name: '모짜렐라 치즈 200g', price: 3900 }] },
+            { type: 'review', author: '자취러미스터리', badge: '일반후기', time: '3시간 전', text: '자취하면서 국물 요리 엄두도 못 냈는데, 이거 하나면 셰프 부럽지 않은 깊은 맛을 낼 수 있어요! 사골 육수가 진국이라 해장용으로도 완벽하고 밥 한 공기 그냥 뚝딱 비웠습니다. 냉동실에 몇 개 더 쟁여두려고 바로 재주문했어요~', img: './images/food35.png', tags: [{ name: '신의주 찹쌀순대 국밥', price: 12900 }, { name: '깐 다진 마늘', price: 2200 }, { name: '청양고추 & 홍고추 팩', price: 1900 }] },
+            { type: 'review', author: '면요리광인', badge: '일반후기', time: '5시간 전', text: '면발이 어쩜 이렇게 쫄깃하고 탱탱한지 전문점 가서 먹는 줄 알았습니다. 쯔유 간장소스가 짜지도 않고 감칠맛이 폭발해서 마지막 남은 국물까지 싹 다 마셔버렸어요. 계란이랑 대파 살짝 추가하니까 완벽한 한 끼가 되네요!', img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '최강록 특제 우동세트', price: 11500 }, { name: '국산 유정란 10구', price: 4800 }, { name: '손질 대파 (소포장)', price: 1800 }] },
+            { type: 'review', author: '고기러버', badge: '포토후기', time: '어제', text: '집에서 프라이팬 하나로 이 정도 퀄리티의 스테이크를 구울 수 있다니 감동입니다. 육즙이 가득 차 있어서 씹을 때마다 고소함이 장난 아니에요. 특제 시즈닝 오일이랑 소스 조합이 미쳤습니다. 기념일에 무조건 필수예요!', img: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '프리미엄 소고기 스테이크', price: 21900 }, { name: '특제 스테이크 소스', price: 3000 }, { name: '새송이버섯 1팩', price: 2100 }] },
+            { type: 'review', author: '다이어터유니', badge: '일반후기', time: '1일 전', text: '다이어트 중이라 외식하기 힘들었는데 신선한 아보카도랑 연어가 듬뿍 들어있어서 죄책감 없이 너무 맛있게 잘 먹었어요! 소스도 상큼하고 칼로리 부담도 없어서 식단 관리할 때 진짜 치트키 같은 메뉴입니다.', img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '키토 아보카도 샐러드', price: 9900 }, { name: '양파 슬라이스 1팩', price: 1500 }, { name: '신선 양배추 1/4조각', price: 2000 }] },
+            { type: 'review', author: '얼큰한국물파', badge: '베스트후기', time: '2일 전', text: '캠핑 갈 때 가져가서 먹었는데 친구들 반응이 폭발적이었습니다! 햄도 3종류나 듬뿍 들어있고 사리까지 넣으니까 국물이 진해져서 소주 안주로 최고였어요. 앞으로 캠핑 필수품 확정입니다.', img: './images/food35.png', tags: [{ name: '얼큰 진한 부대찌개', price: 13500 }, { name: '라면사리 추가', price: 800 }, { name: '찌개용 두부 1모', price: 1500 }] },
+            { type: 'review', author: '살림9단맘', badge: '일반후기', time: '3일 전', text: '국내산 묵은지가 통삼겹이랑 어우러져서 푹 끓여내니까 입에서 살살 녹아요. 밥도둑이 따로 없습니다. 집안 가득 맛있는 냄새가 퍼져서 가족들 전부 식탁 앞에 일찍 모였네요.', img: './images/food36.png', tags: [{ name: '묵은지 김치찜 밀키트', price: 15900 }, { name: '손질 대파 (소포장)', price: 1800 }, { name: '국산 유정란 10구', price: 4800 }] },
+            { type: 'review', author: '매콤이치킨', badge: '일반후기', time: '3일 전', text: '얼얼하면서도 중독성 있는 마라 소스 덕분에 스트레스가 확 풀리는 맛이에요! 푸주랑 중국당면, 숙주까지 재료가 알차게 들어있어서 따로 사서 넣을 필요가 전혀 없네요. 매운 것 좋아하시는 분들 강추!', img: './images/food37.png', tags: [{ name: '사천식 마라탕 밀키트', price: 14500 }, { name: '중국당면 1팩', price: 2500 }, { name: '신선 숙주나물 1봉', price: 1600 }] },
+            { type: 'review', author: '치즈덕후', badge: '포토후기', time: '4일 전', text: '특제 과일 양념에 잘 재워져서 그런지 고기가 엄청 야들야들하고 부드러워요. 뚝배기에 파랑 버섯 듬뿍 넣고 보글보글 끓여먹으니 외식 장소가 부럽지 않습니다. 아이들도 정말 잘 먹어요!', img: './images/food38.png', tags: [{ name: '전통 소불고기 뚝배기', price: 16900 }, { name: '새송이버섯 1팩', price: 2100 }, { name: '손질 대파 (소포장)', price: 1800 }] },
+            { type: 'review', author: '자취생김대리', badge: '일반후기', time: '5일 전', text: '순두부랑 우삼겹 조합이 이렇게 찰떡인지 처음 알았어요. 칼칼하고 고소한 국물에 계란 하나 톡 터뜨려 먹으니 든든한 저녁 한 끼로 더할 나위 없습니다. 가격도 착하고 자주 애용할게요.', img: './images/food39.png', tags: [{ name: '우삼겹 순두부 찌개', price: 11900 }, { name: '우삼겹 추가 150g', price: 5900 }, { name: '국산 유정란 10구', price: 4800 }] },
+            { type: 'table', author: '감성식탁제이', badge: '인기자랑', time: '30분 전', text: '모짜렐라 치즈를 듬뿍 올려서 더 고소하고 푸짐하게 즐겨본 오늘의 저녁 식탁입니다. 예쁜 그릇에 담아내니까 홈스토랑 분위기가 물씬 나네요. 오늘도 맛있게 잘 먹었습니다!', img: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '매콤 우삼겹 떡볶이', price: 14900 }, { name: '모짜렐라 치즈 200g', price: 3900 }, { name: '손질 대파 (소포장)', price: 1800 }] },
+            { type: 'table', author: '홈파티마스터', badge: '베스트자랑', time: '2시간 전', text: '주말을 맞아 소중한 지인들과 함께 홈파티를 열었어요. 근사한 스테이크와 와인 한 잔 곁들이니 분위기가 한층 더 살아납니다. 모두들 레시피 어디서 샀냐고 물어보더라고요 뿌듯합니다!', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '프리미엄 소고기 스테이크', price: 21900 }, { name: '특제 스테이크 소스', price: 3000 }, { name: '새송이버섯 1팩', price: 2100 }] },
+            { type: 'table', author: '소확행테이블', badge: '일반자랑', time: '4시간 전', text: '쌀쌀한 날씨에 따뜻한 국물과 우동 면치기로 소소하지만 확실한 행복을 채운 저녁이에요. 요리 과정이 복잡하지 않아서 퇴근 후에도 부담 없이 뚝딱 차려낼 수 있어 너무 만족스러워요.', img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '최강록 특제 우동세트', price: 11500 }, { name: '국산 유정란 10구', price: 4800 }, { name: '손질 대파 (소포장)', price: 1800 }] },
+            { type: 'table', author: '클린식단연구소', badge: '일반자랑', time: '어제', text: '눈으로 먼저 먹고 건강까지 챙기는 완벽한 클린 식단 플레이팅입니다. 신선한 채소와 아보카도의 색감 조화가 너무 예뻐서 사진을 몇 장이나 찍었는지 몰라요. 맛도 신선함 그 자체!', img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '키토 아보카도 샐러드', price: 9900 }, { name: '양파 슬라이스 1팩', price: 1500 }, { name: '신선 양배추 1/4조각', price: 2000 }] },
+            { type: 'table', author: '자취요리사', badge: '일반자랑', time: '1일 전', text: '만능 비법 소스 하나로 손쉽게 완성한 매콤달콤 떡볶이입니다. 떡이랑 어묵 넣고 휘리릭 끓이기만 했는데도 분식집 전문점 맛이 그대로 나서 깜짝 놀랐어요. 야식 메뉴로 최고입니다.', img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '만능 떡볶이 비법 소스', price: 2500 }, { name: '밀떡 및 쌀떡 사리 세트', price: 2500 }, { name: '사각 어묵 1팩', price: 2000 }] },
+            { type: 'table', author: '국밥충의길', badge: '일반자랑', time: '2일 전', text: '뚝배기에 들깨가루 듬뿍 풀어서 바글바글 끓여낸 든든한 국밥 한 상입니다. 잡내 하나 없이 깔끔하고 진한 사골 국물 덕분에 속이 뜨끈하게 풀리네요. 한식 최고!', img: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '신의주 찹쌀순대 국밥', price: 12900 }, { name: '손질 대파 (소포장)', price: 1800 }, { name: '청양고추 & 홍고추 팩', price: 1900 }] },
+            { type: 'table', author: '파티플래너K', badge: '인기자랑', time: '3일 전', text: '여럿이서 모여 푸짐하게 즐기기 좋은 부대찌개 파티상이에요. 햄 사리와 라면까지 완벽하게 어우러져서 다들 숟가락이 멈추질 않더라고요. 푸짐하고 맛있어서 자주 찾는 메뉴입니다.', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '얼큰 진한 부대찌개', price: 13500 }, { name: '라면사리 추가', price: 800 }, { name: '찌개용 두부 1모', price: 1500 }] },
+            { type: 'table', author: '채소소믈리에', badge: '일반자랑', time: '3일 전', text: '당일 수확한 신선함이 고스란히 느껴지는 아삭한 채소들로 차려낸 건강한 샐러드 볼입니다. 드레싱과의 조화도 뛰어나고 식감이 살아있어 매일 먹어도 질리지 않아요.', img: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '신선 양배추 1/4조각', price: 2000 }, { name: '양파 슬라이스 1팩', price: 1500 }, { name: '모둠 쌈채소 (깻잎/상추)', price: 2900 }] },
+            { type: 'table', author: '알뜰주부9단', badge: '일반자랑', time: '4일 전', text: '냉장고에 있는 재료들과 밀키트를 알뜰하게 조합해서 차려낸 뿌듯한 저녁상입니다. 가성비도 좋고 맛도 훌륭해서 주위 지인들에게도 적극 추천하고 있어요.', img: './images/food34.png', tags: [{ name: '묵은지 김치찜 밀키트', price: 15900 }, { name: '손질 대파 (소포장)', price: 1800 }, { name: '국산 유정란 10구', price: 4800 }] },
+            { type: 'table', author: '마라광인', badge: '일반자랑', time: '5일 전', text: '집에서 편안하게 즐기는 얼얼한 홈마라탕 파티! 재료를 내 취향대로 듬뿍 넣어서 만들 수 있으니까 배달보다 훨씬 만족스럽습니다. 알싸한 매운맛이 예술이네요.', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1000&q=80', tags: [{ name: '사천식 마라 소스팩', price: 3500 }, { name: '중국당면 1팩', price: 2500 }, { name: '신선 숙주나물 1봉', price: 1600 }] }
+        ];
+
+        function filterCategory(category) {
+            const grid = document.getElementById('product-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            ['milkit', 'vegetable', 'meat', 'sauce'].forEach(cat => {
+                const btn = document.getElementById('btn-' + cat);
+                if(btn) {
+                    if(cat === category) {
+                        btn.className = 'bg-[#5C4033] text-white px-4 py-2 rounded-xl text-xs font-bold transition';
+                    } else {
+                        btn.className = 'bg-white border border-[#E6E0D8] text-[#6B5344] px-4 py-2 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5]';
+                    }
+                }
+            });
+
+            products.filter(p => p.category === category).forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'bg-white border border-[#E6E0D8] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer group';
+                card.onclick = () => showDetail(p.name, p.price, p.img, p.diy);
+                card.innerHTML = `
+                    <div class="h-48 overflow-hidden"><img src="${p.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"></div>
+                    <div class="p-4">
+                        <span class="text-[10px] bg-[#F3EFEA] text-[#5C4033] font-bold px-2 py-0.5 rounded">${p.category}</span>
+                        <h4 class="text-sm font-bold text-[#4A3B32] mt-1">${p.name}</h4>
+                        <p class="text-xs text-[#8C7A6B] mt-0.5">${p.desc}</p>
+                        <p class="text-base font-extrabold text-[#5C4033] mt-2">${p.price.toLocaleString()}원</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        let currentBasePrice = 0;
+        function showDetail(title, price, imgUrl, diyOptions) {
+            document.getElementById('detail-title').innerText = title;
+            currentBasePrice = price;
+            document.getElementById('total-price').innerText = price.toLocaleString() + '원';
+            document.getElementById('detail-price-text').innerText = price.toLocaleString() + '원';
+            document.getElementById('detail-img').src = imgUrl;
+
+            const diyContainer = document.getElementById('diy-container');
+            diyContainer.innerHTML = `<h5 class="text-xs font-bold text-[#5C4033] sticky top-0 bg-[#FAF8F5] pb-2 border-b border-[#E6E0D8]">🌿 집에 있는 재료 선택 (실시간 가격 차감)</h5>`;
+            if(diyOptions && diyOptions.length > 0) {
+                diyOptions.forEach((opt, index) => {
+                    const label = document.createElement('label');
+                    label.className = 'flex items-center justify-between text-xs text-[#4A3B32] cursor-pointer py-1';
+                    label.innerHTML = `
+                        <span class="flex items-center gap-2"><input type="checkbox" onchange="updatePrice(${opt.price}, this)" class="accent-[#5C4033]"> ${index + 1}. ${opt.name}</span>
+                        <span class="text-[#8C7A6B]">-${opt.price.toLocaleString()}원</span>
+                    `;
+                    diyContainer.appendChild(label);
+                });
+            } else {
+                diyContainer.innerHTML += `<p class="text-xs text-[#8C7A6B] py-2">본 상품은 맞춤 제외 품목이 없는 단품 상품입니다.</p>`;
+            }
+
+            ['view-home', 'view-exhibition', 'view-subscription', 'view-shopping', 'view-detail', 'view-community', 'view-custom-diy', 'view-season-exhibition', 'view-chef-exhibition'].forEach(id => {
+                const el = document.getElementById(id);
+                if(el) el.classList.add('hidden');
+            });
+            document.getElementById('view-detail').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updatePrice(amount, checkbox) {
+            if (checkbox.checked) currentBasePrice -= amount;
+            else currentBasePrice += amount;
+            if(currentBasePrice < 0) currentBasePrice = 0;
+            document.getElementById('total-price').innerText = currentBasePrice.toLocaleString() + '원';
+        }
+
+        function switchCommunityTab(tabType) {
+            const btnReview = document.getElementById('comm-tab-review');
+            const btnTable = document.getElementById('comm-tab-table');
+            const grid = document.getElementById('community-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+
+            if(tabType === 'review') {
+                if(btnReview) btnReview.className = 'bg-[#5C4033] text-white px-4 py-2 rounded-xl text-xs font-bold transition';
+                if(btnTable) btnTable.className = 'bg-white border border-[#E6E0D8] text-[#6B5344] px-4 py-2 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5]';
+            } else {
+                if(btnTable) btnTable.className = 'bg-[#5C4033] text-white px-4 py-2 rounded-xl text-xs font-bold transition';
+                if(btnReview) btnReview.className = 'bg-white border border-[#E6E0D8] text-[#6B5344] px-4 py-2 rounded-xl text-xs font-bold transition hover:bg-[#FAF8F5]';
+            }
+
+            communityPosts.filter(p => p.type === tabType).forEach(post => {
+                const card = document.createElement('div');
+                card.className = 'bg-white border border-[#E6E0D8] rounded-3xl p-6 shadow-sm';
+                let tagsHtml = '';
+                post.tags.forEach(tag => {
+                    const matchedProd = products.find(p => p.name === tag.name) || { price: tag.price, img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80', diy: [] };
+                    tagsHtml += `
+                        <div class="bg-white/95 backdrop-blur-md border border-[#E6E0D8] p-2.5 rounded-xl shadow-md flex items-center justify-between cursor-pointer hover:bg-[#FAF8F5]" onclick="showDetail('${tag.name}', ${matchedProd.price}, '${matchedProd.img}', ${JSON.stringify(matchedProd.diy).replace(/"/g, '&quot;')})">
+                            <div>
+                                <span class="text-[9px] bg-[#F3EFEA] text-[#5C4033] font-bold px-1.5 py-0.5 rounded">사용한 품목</span>
+                                <h6 class="text-xs font-bold text-[#4A3B32] mt-0.5">${tag.name}</h6>
+                                <span class="text-[11px] text-[#5C4033] font-bold">${matchedProd.price.toLocaleString()}원</span>
+                            </div>
+                            <span class="bg-[#5C4033] text-white text-[11px] px-2.5 py-1.5 rounded-lg font-bold">담기 &gt;</span>
+                        </div>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-[#F3EFEA] rounded-full flex items-center justify-center font-bold text-[#5C4033]">👤</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-[#4A3B32]">${post.author} <span class="text-[10px] bg-[#F3EFEA] text-[#5C4033] px-2 py-0.5 rounded ml-1">${post.badge}</span></h4>
+                            <p class="text-[11px] text-[#8C7A6B]">${post.time}</p>
+                        </div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden h-72 interactive-img-box cursor-pointer">
+                        <img src="${post.img}" class="w-full h-full object-cover">
+                        <div class="tag-popup absolute bottom-3 left-3 right-3 space-y-2 max-h-56 overflow-y-auto pr-1">${tagsHtml}</div>
+                    </div>
+                    <p class="text-xs text-[#6B5344] mt-4">${post.text}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        let currentCustom = {
+            main: { name: '닭갈비', price: 5900, cal: 320 },
+            carb: { name: '현미밥', price: 1500, cal: 200 },
+            veg: { name: '브로콜리', price: 1500, cal: 50 },
+            sauce: { name: '기본 소스', price: 0 },
+            spicy: '보통 (중)'
+        };
+
+        function selectCustomOption(category, name, price, cal) {
+            currentCustom[category] = { name, price, cal };
+            const buttons = document.querySelectorAll(`.custom-btn-${category}`);
+            buttons.forEach(btn => {
+                if(btn.innerText.includes(name)) {
+                    btn.className = `custom-btn-${category} p-3.5 rounded-2xl border border-[#5C4033] bg-[#5C4033] text-white text-xs font-bold transition text-center shadow-sm`;
+                } else {
+                    btn.className = `custom-btn-${category} p-3.5 rounded-2xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]`;
+                }
+            });
+            updateCustomSummary();
+        }
+
+        function selectSauce(name, price) {
+            currentCustom.sauce = { name: name + ' 소스', price };
+            const buttons = document.querySelectorAll('.custom-btn-sauce');
+            buttons.forEach(btn => {
+                if(btn.innerText.includes(name)) {
+                    btn.className = 'custom-btn-sauce p-3 rounded-xl border border-[#5C4033] bg-[#5C4033] text-white text-xs font-bold transition text-center';
+                } else {
+                    btn.className = 'custom-btn-sauce p-3 rounded-xl border border-[#E6E0D8] bg-[#FAF8F5] text-[#4A3B32] text-xs font-bold transition text-center hover:border-[#5C4033]';
+                }
+            });
+            updateCustomSummary();
+        }
+
+        function changeSpicyLevel(val) {
+            const texts = ['순한맛 (하)', '보통 (중)', '매운맛 (상)'];
+            currentCustom.spicy = texts[val - 1];
+            const spicyElem = document.getElementById('spicy-level-text');
+            if(spicyElem) spicyElem.innerText = currentCustom.spicy;
+            updateCustomSummary();
+        }
+
+        function updateCustomSummary() {
+            const mainElem = document.getElementById('sum-main');
+            if(mainElem) {
+                document.getElementById('sum-main').innerText = `• ${currentCustom.main.name}`;
+                document.getElementById('sum-main-p').innerText = `${currentCustom.main.price.toLocaleString()}원`;
+                document.getElementById('sum-carb').innerText = `+ ${currentCustom.carb.name}`;
+                document.getElementById('sum-carb-p').innerText = `${currentCustom.carb.price.toLocaleString()}원`;
+                document.getElementById('sum-veg').innerText = `+ ${currentCustom.veg.name}`;
+                document.getElementById('sum-veg-p').innerText = `${currentCustom.veg.price.toLocaleString()}원`;
+                document.getElementById('sum-sauce').innerText = `+ ${currentCustom.sauce.name} (${currentCustom.spicy})`;
+                document.getElementById('sum-sauce-p').innerText = currentCustom.sauce.price > 0 ? `+${currentCustom.sauce.price.toLocaleString()}원` : `0원`;
+
+                const totalCal = currentCustom.main.cal + currentCustom.carb.cal + currentCustom.veg.cal;
+                const totalPrice = currentCustom.main.price + currentCustom.carb.price + currentCustom.veg.price + currentCustom.sauce.price;
+                document.getElementById('sum-total-cal').innerText = `${totalCal} kcal`;
+                document.getElementById('sum-total-price').innerText = `${totalPrice.toLocaleString()}원`;
+            }
+        }
+    </script>
+</body>
+</html>
